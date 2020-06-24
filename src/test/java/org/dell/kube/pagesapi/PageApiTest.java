@@ -2,9 +2,7 @@ package org.dell.kube.pagesapi;
 
 import com.jayway.jsonpath.DocumentContext;
 import com.mysql.cj.jdbc.MysqlDataSource;
-import org.dell.kube.pages.Page;
 import org.dell.kube.pages.PageApplication;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,9 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.time.LocalDate;
 import java.util.Collection;
-import java.util.TimeZone;
 
 import static com.jayway.jsonpath.JsonPath.parse;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -34,16 +30,7 @@ public class PageApiTest {
     private final String contactNumber="1234567890";
     private Page page = new Page(businessName, address,categoryId, contactNumber);
 
-    @BeforeEach
-    public void setUp() throws Exception {
-        MysqlDataSource dataSource = new MysqlDataSource();
-        dataSource.setUrl(System.getenv("SPRING_DATASOURCE_URL"));
 
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        jdbcTemplate.execute("TRUNCATE pages");
-
-        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
-    }
 
     @Test
     public void testCreate() throws Exception {
