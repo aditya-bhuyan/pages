@@ -7,7 +7,10 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class PageApplication {
 
-	
+	@Bean
+	public IPageRepository iPageRepository(){
+		return new InMemoryPageRepository();
+	}
 	public static void main(String[] args) {
 		SpringApplication.run(PageApplication.class, args);
 	}

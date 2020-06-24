@@ -19,7 +19,7 @@ spec:
         servicefor: pages
     spec:
       containers:
-      - image: adityapratapbhuyan/pages:config
+      - image: adityapratapbhuyan/pages:repo
         name: pages
         ports:
           - containerPort: 8080
