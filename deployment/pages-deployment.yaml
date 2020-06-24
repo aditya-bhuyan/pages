@@ -20,7 +20,6 @@ spec:
     spec:
       containers:
       - image: adityapratapbhuyan/pages:hello
-        imagePullPolicy: Always
         name: pages
         ports:
           - containerPort: 8080
