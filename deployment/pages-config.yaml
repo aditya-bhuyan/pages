@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: pages-config-map
-data:
-  PAGE_CONTENT: "Green-Pages coming from Yellow-world!"
