@@ -1,21 +1,11 @@
 package org.dell.kube.pages;
 
-import com.mysql.cj.jdbc.MysqlDataSource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureJdbc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.jdbc.core.JdbcTemplate;
 
-import javax.sql.DataSource;
 import java.util.List;
-import java.util.Map;
-import java.util.TimeZone;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 
 public class PageRepositoryTest {
@@ -56,10 +46,10 @@ public class PageRepositoryTest {
    @Test
     public void findFindsAPage() {
        Page newPage = new Page("XYZ", "Bangalore", 123, "1234567890");
-       repo.create(newPage);
-        Page page = repo.read(321L);
+       newPage = repo.create(newPage);
+        Page page = repo.read(newPage.getId());
 
-       assertThat(page.getId()).isEqualTo(321L);
+       assertThat(page.getId()).isEqualTo(newPage.getId());
        assertThat(page.getBusinessName()).isEqualTo("XYZ");
        assertThat(page.getAddress()).isEqualTo("Bangalore");
        assertThat(page.getCategoryId()).isEqualTo(123);
@@ -76,13 +66,13 @@ public class PageRepositoryTest {
    @Test
     public void listFindsAllTimeEntries() {
        Page newPage = new Page("XYZ", "Bangalore", 123, "1234567890");
-       repo.create(newPage);
+       newPage =repo.create(newPage);
 
         List<Page> pages = repo.list();
         assertThat(pages.size()).isEqualTo(1);
 
        Page page = pages.get(0);
-       assertThat(page.getId()).isEqualTo(321L);
+       assertThat(page.getId()).isEqualTo(newPage.getId());
        assertThat(page.getBusinessName()).isEqualTo("XYZ");
        assertThat(page.getAddress()).isEqualTo("Bangalore");
        assertThat(page.getCategoryId()).isEqualTo(123);
@@ -93,13 +83,13 @@ public class PageRepositoryTest {
     public void updateReturnsTheUpdatedRecord() {
 
 
-        Page newPage = new Page(1000L,"ABC", "Bangalore", 321, "1876543210");
-        repo.create(newPage);
+        Page newPage = new Page("ABC", "Bangalore", 321, "1876543210");
+        newPage = repo.create(newPage);
         Page pageUpdates = new Page("ABC" , "Bangalore", 321, "987654321");
 
-        Page updatedPage = repo.update(pageUpdates,1000L);
+        Page updatedPage = repo.update(pageUpdates,newPage.getId());
 
-        assertThat(updatedPage.getId()).isEqualTo(1000L);
+        assertThat(updatedPage.getId()).isEqualTo(newPage.getId());
         assertThat(updatedPage.getBusinessName()).isEqualTo("ABC");
         assertThat(updatedPage.getAddress()).isEqualTo("Bangalore");
         assertThat(updatedPage.getCategoryId()).isEqualTo(321);
@@ -108,12 +98,12 @@ public class PageRepositoryTest {
 
      @Test
     public void updateUpdatesTheRecord() {
-         Page newPage = new Page(1000L,"ABC", "Bangalore", 321, "1876543210");
-         repo.create(newPage);
+         Page newPage = new Page("ABC", "Bangalore", 321, "1876543210");
+         newPage = repo.create(newPage);
 
         Page updatedPage = new Page("ABC" , "Bangalore", 321, "987654321");
 
-        Page page = repo.update(updatedPage,1000L);
+        Page page = repo.update(updatedPage,newPage.getId());
 
         Page foundPage = repo.read( page.getId());
 
@@ -126,12 +116,12 @@ public class PageRepositoryTest {
 
     @Test
     public void deleteRemovesTheRecord() {
-        Page newPage = new Page(1000L,"ABC", "Bangalore", 321, "1876543210");
-        repo.create(newPage);
+        Page newPage = new Page("ABC", "Bangalore", 321, "1876543210");
+        newPage =repo.create(newPage);
 
-        repo.delete(1000L);
+        repo.delete(newPage.getId());
 
-        Page notFoundPage = repo.read( 1000L);
+        Page notFoundPage = repo.read( newPage.getId());
         assertThat(notFoundPage).isNull();
 
     }
