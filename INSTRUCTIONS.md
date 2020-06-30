@@ -30,7 +30,7 @@ docker push <docker_username>/<docker_repo>:<tag>
   * Assign pages for app, servicefor and name
 - Fill the pages-deployment.yaml
   * Assign pages for app, servicefor and name
-  * Assign <docker_username>/<docker_repo>:<tag> for image
+  * Assign <docker_username>/<docker_repo>:tag for image
 - Run the following commands in kubernetes to run the application 
 ```shell script
 kubectl -f deployment/pages-service.yaml
