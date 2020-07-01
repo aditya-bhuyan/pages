@@ -22,7 +22,8 @@
 - Code change in HomeController
   * Add a Logger from slf4j api
   * Add  debug,warn,trace,info and error messages in getPage() method
-  
+- Few logging properties are added in application.properties. Run your application and verify the logs
+- Comment the log properties from application.properties  
 - Add logback.xml under resources folder with basic logging configuration for FILE and STDOUT appender
   ```xml
   <?xml version = "1.0" encoding = "UTF-8"?>
