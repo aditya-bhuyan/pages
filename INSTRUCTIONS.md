@@ -232,4 +232,4 @@ spring.datasource.password=password
 ```
 - Docker build and publish the image with tag persist
 - Make change in the pages-deployment.yaml to update the tag
-- Change the pipeline.yaml to 
+- Change the pipeline.yaml to accomodate the new yaml files
