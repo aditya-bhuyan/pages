@@ -77,7 +77,7 @@ kubectl apply -f deployment/pages-config.yaml
 kubectl apply -f deployment/pages-service.yaml
 kubectl apply -f deployment/pages-deployment.yaml
 ```
-
+- Put instructions to create pv and pvc in pipeline.yaml above the "kubectl apply -f deployment/pages-config.yaml"
 - The application would be ready after 150 seconds as the readiness probe would start after 150 seconds
 - Keep on checking the status of the pod which is part of the pages deployment
  
