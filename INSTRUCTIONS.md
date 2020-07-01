@@ -22,7 +22,8 @@
 - Code change in HomeController
   * Add a Logger from slf4j api
   * Add  debug,warn,trace,info and error messages in getPage() method
-  
+- Few logging properties are added in application.properties. Run your application and verify the logs
+- Comment the log properties from application.properties  
 - Add logback.xml under resources folder with basic logging configuration for FILE and STDOUT appender
   ```xml
   <?xml version = "1.0" encoding = "UTF-8"?>
@@ -76,7 +77,7 @@ kubectl apply -f deployment/pages-config.yaml
 kubectl apply -f deployment/pages-service.yaml
 kubectl apply -f deployment/pages-deployment.yaml
 ```
-
+- Put instructions to create pv and pvc in pipeline.yaml above the "kubectl apply -f deployment/pages-config.yaml"
 - The application would be ready after 150 seconds as the readiness probe would start after 150 seconds
 - Keep on checking the status of the pod which is part of the pages deployment
  
