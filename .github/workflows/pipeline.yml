@@ -41,6 +41,7 @@ jobs:
           pivnet login --api-token=cd8d86d24afa43b9bd989012adcbf3f5-r
           pivnet download-product-files --product-slug='pivotal-container-service' --release-version='1.7.0' --product-file-id=646536
           sudo mv pks-linux-amd64-1.7.0-build.483 pks
+          chmod +x pks
           sudo mv pks /usr/local/bin/
       - name: Install Kubectl
         run: |
