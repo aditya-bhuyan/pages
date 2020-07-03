@@ -33,8 +33,8 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: <docker-user-name>/pages
-          tags: <tag-name>
+          repository: adityapratapbhuyan/pages
+          tags: repo
   deploy-image-to-pks:
     needs: build-docker-image
     runs-on: ubuntu-latest
@@ -59,7 +59,6 @@ jobs:
           pks get-credentials pks-workshop
           kubectl apply -f deployment/pages-config.yaml
           kubectl apply -f deployment/pages-service.yaml
-          kubectl apply -f deployment/pages-service-second.yaml
           kubectl apply -f deployment/pages-deployment.yaml
 
 
