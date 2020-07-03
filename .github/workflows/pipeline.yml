@@ -30,7 +30,7 @@ jobs:
           repository: adityapratapbhuyan/pages
           tags: repo
   deploy-image-to-pks:
-    needs: build-docker-image
+    needs: build-artifact
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
